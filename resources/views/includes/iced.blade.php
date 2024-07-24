@@ -28,6 +28,20 @@
                     <p class="tm-list-item-description">Contents are organized into 3 tabs. Please <a href="https://www.tooplate.com/contact" rel="nofollow" target="_parent">contact Tooplate</a> if you have anything to ask.</p>
                   </div>
                 </div> 
-                                       
+                <div id="cold" class="tm-tab-content">
+                <div class="tm-list">
+                @foreach ($icedDrinks as $beverage)
+                <div class="tm-item">
+                @if ($beverage->beverage_image)
+                <img src="{{ asset ('assets/img/' . $coffee->coffee_image) }}" alt="Image" class="tm-list-item-img">
+                 @else
+                 <span class="text-danger">No valid image available.</span>
+                  @endif
+                  <div class="tm-black-bg tm-list-item-text">
+                   <h3>{{ $beverage->beverage_title }} <span class="tm-list-item-price">{{ $beverage->beverage_price }}</span></h3>
+                   <p class="tm-list-item-description">{{ $beverage->beverage_content }}</p>
+                     </div>
+                 </div>
+                  @endforeach              
               </div>
             </div> 

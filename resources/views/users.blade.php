@@ -1,12 +1,11 @@
 @extends('layoutsdash.main')
 
 @section('content')
-        <!-- Categories -->
-        <div class="right_col" role="main">
+<div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Manage Categories</h3>
+                <h3>Manage <small>Users</small></h3>
               </div>
 
               <div class="title_right">
@@ -27,7 +26,7 @@
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>List of Categories</h2>
+                    <h2>List of Users</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -49,26 +48,28 @@
                             <div class="card-box table-responsive">
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
-                        <tr>
-                          <th>Category Name</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
-                        </tr>
+                      <tr>
+                     <th>Full Name</th>
+                     <th>User Name</th>
+                     <th>Email</th>
+                     <th>Active</th>
+                     <th>Password</th>
+                     <th>Edit</th>
+                     </tr>
                       </thead>
 
-
                       <tbody>
-                        <tr>
-                          <td>Category</td>
-                          <td><img src="{{ asset('dashassets/images/edit.png' )}}" alt="Edit"></td>
-                          <td><img src="{{ asset('dashassets/images/delete.png' )}}" alt="Delete"></td>
-                        </tr>
-                        <tr>
-                          <td>Category</td>
-                          <td><img src="{{ asset('dashassets/images/edit.png' )}}" alt="Edit"></td>
-                          <td><img src="{{ asset('dashassets/images/delete.png' )}}" alt="Delete"></td>
-                        </tr>
-                        
+                      @foreach ($users as $user)
+                      <tr>
+                      <td>{{ $user->full_name }}</td>
+                       <td>{{ $user->user_name }}</td>
+                       <td>{{ $user->email }}</td>
+                       <td>{{ $user->active ? 'Yes' : 'No' }}</td>
+                       <td>{{ $user->password }}</td>
+                       <td><a href="{{ route('editUsers', $user->id) }}"> <img src="{{ asset('dashassets/images/edit.png') }}" alt="Edit"></a></td>
+                       </tr>
+                       @endforeach
+
                       </tbody>
                     </table>
                   </div>
@@ -80,6 +81,4 @@
             </div>
           </div>
         </div>
-        <!-- End Categories -->
 @endsection
-

@@ -51,29 +51,30 @@
                                             <tr>
                                                 <th>Full Name</th>
                                                 <th>Email</th>
+                                                <th>Edit</th>
                                                 <th>Show</th>
                                                 <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach ($messages as $message)
                                             <tr>
-                                                <td>First Name and Last Name</td>
-                                                <td>mail@example.com</td>
-                                                <td><img src="{{ asset('dashassets/images/edit.png' )}}" alt="Edit"></td>
-                                                <td><img src="{{ asset('dashassets/images/delete.png' )}}" alt="Delete"></td>
+                                                <td>{{ $message->sender_name }}</td>
+                                                <td>{{ $message->sender_email }}</td>
+                                                <td><a href="{{ route('editMessages', $message->id) }}"> <img src="{{ asset('dashassets/images/edit.png') }}" alt="Edit"></a></td>
+                                                <td><a href="{{ route('showMessage', $message->id)}}"><img src="{{ asset('dashassets/images/Law.png') }}" alt="Edit"></a></td>
+                                                <td>
+                                                <form action="{{ route('dashboard.delMessage') }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                  <input type="hidden" value="{{ $message->id }}" name="id">
+                                                  <button type="submit" onclick="return confirm('Are you sure you want to delete this message?')">
+                                                  <img src="{{ asset('dashassets/images/delete.png') }}" alt="Delete">
+                                                  </button>
+                                                </form>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>First Name and Last Name</td>
-                                                <td>mail@example.com</td>
-                                                <td><img src="{{ asset('dashassets/images/edit.png' )}}" alt="Edit"></td>
-                                                <td><img src="{{ asset('dashassets/images/delete.png' )}}" alt="Delete"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>First Name and Last Name</td>
-                                                <td>mail@example.com</td>
-                                                <td><img src="{{ asset('dashassets/images/edit.png' )}}" alt="Edit"></td>
-                                                <td><img src="{{ asset('dashassets/images/delete.png' )}}" alt="Delete"></td>
-                                            </tr>
+                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -2,8 +2,8 @@
 
 @section('content')
 
- <!-- Edit Categories -->
-        <div class="right_col" role="main">
+<!-- Edit Category -->
+<div class="right_col" role="main">
     <div class="">
         <div class="page-title">
             <div class="title_left">
@@ -25,7 +25,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Edit Category</h2>
+                        <h2>{{ $title }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li class="dropdown">
@@ -41,19 +41,35 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form action="{{ route('updateCategory', $category->id) }}" method="POST" id="edit-form" data-parsley-validate class="form-horizontal form-label-left">
+                            @csrf
+                            @method('PUT')
 
                             <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="edit-category">Edit Category <span class="required">*</span></label>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="cold">Iced Coffee <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input type="text" id="edit-category" required="required" class="form-control">
+                                    <input type="text" id="cold" name="cold" required="required" class="form-control" value="{{ old('cold', $category->cold) }}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="hot">Hot Coffee <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" id="hot" name="hot" required="required" class="form-control" value="{{ old('hot', $category->hot) }}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="juice">Fruit Juice <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" id="juice" name="juice" required="required" class="form-control" value="{{ old('juice', $category->juice) }}">
                                 </div>
                             </div>
 
                             <div class="ln_solid"></div>
                             <div class="item form-group">
                                 <div class="col-md-6 col-sm-6 offset-md-3">
-                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <a href="{{ route('categories.index') }}" class="btn btn-primary">Cancel</a>
                                     <button type="submit" class="btn btn-success">Update</button>
                                 </div>
                             </div>
@@ -65,6 +81,5 @@
         </div>
     </div>
 </div>
-<!-- End Edit Categories -->
-
+<!-- End Edit Category -->
 @endsection

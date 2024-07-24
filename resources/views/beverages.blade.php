@@ -50,6 +50,7 @@
                                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Beverage Title</th>
                                                 <th>Beverage Content</th>
                                                 <th>Beverage Price</th>
@@ -62,35 +63,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($beverages as $beverage)
+                                            @foreach($beverages as $beverage)
                                             <tr>
+                                                <td>{{ $beverage->id }}</td>
                                                 <td>{{ $beverage->beverage_title }}</td>
                                                 <td>{{ $beverage->beverage_content }}</td>
                                                 <td>{{ $beverage->beverage_price }}</td>
                                                 <td>{{ $beverage->published ? 'Yes' : 'No' }}</td>
                                                 <td>{{ $beverage->special ? 'Yes' : 'No' }}</td>
+                                                <td><img src="{{ asset('storage/images/' . $beverage->beverage_image) }}"
+                                                        alt="{{ $beverage->beverage_title }}" class="img-thumbnail"
+                                                        style="width: 100px; height: 100px;"></td>
+                                                        <td>{{ $beverage->category->cold }} / {{ $beverage->category->hot }} / {{ $beverage->category->juice }}</td>
+                                                        <td><a href="#" class="btn btn-info btn-xs"><i
+                                                            class="fa fa-pencil"></i> Edit </a></td>
                                                 <td>
-                                                    @if ($beverage->beverage_image)
-                                                    <img src="{{ asset('public/images/' . $beverage->beverage_image) }}"
-                                                        alt="Beverage Image" class="img-thumbnail">
-                                                    @else
-                                                    <span class="text-danger">No valid image available.</span>
-                                                    @endif
+                                                    <form action="{{ route('beverages.delete') }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="id" value="{{ $beverage->id }}">
+                                                        <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</button>
+                                                    </form>
                                                 </td>
-                                                <td>{{ $beverage->category_id }}</td>
-                                                <td><img src="{{ asset('dashassets/images/edit.png' )}}"
-                                                        alt="Edit"></td>
-                                                        <td>
-                                                       <form action="{{ route('dashboard.delBeverage') }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                       <input type="hidden" value="{{ $beverage->id }}" name="id">
-                                                       <button type="submit" onclick="return confirm('Are you sure you want to delete?')">
-                                                       <img src="{{ asset('dashassets/images/delete.png') }}" alt="Delete">
-                                                       </button>
-                                                </form>
-                                                      </td>
-                                                      </tr>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -101,6 +98,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!-- End Beverages -->

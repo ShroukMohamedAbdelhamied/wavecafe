@@ -28,5 +28,19 @@
                     <p class="tm-list-item-description">Page contents are organized into 3 tabs to show different lists of items.</p>              
                   </div>
                 </div>
-              </div>
-            </div>
+                <div class="tm-list">
+                @foreach ($hotDrinks as $drink)
+                <div class="tm-list-item">
+                    @if ($drink->beverage_image)
+                    <img src="{{ asset('assets/img/' . $drink->beverage_image) }}" alt="Image" class="tm-list-item-img">
+                    @else
+                    <span class="text-danger">No valid image available.</span>
+                    @endif
+                    <div class="tm-black-bg tm-list-item-text">
+                        <h3>{{ $drink->beverage_title }} <span class="tm-list-item-price">{{ $drink->beverage_price }}</span></h3>
+                        <p class="tm-list-item-description">{{ $drink->beverage_content }}</p>
+                    </div>
+                </div>
+                @endforeach
+          </div>
+      </div>

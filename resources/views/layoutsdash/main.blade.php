@@ -3,13 +3,6 @@
   <head>
     @include('includesdash.head')
   </head>
-
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-
         <!-- menu profile quick info -->
         @include('includesdash.menuProfile')
         <!-- /menu profile quick info -->
@@ -22,21 +15,16 @@
         @include('includesdash.menuFooter')
         <!-- /menu footer buttons -->
 
-    </div>
-    </div>
-
         <!-- top navigation -->
         @include('includesdash.topNav')
         <!-- /top navigation -->
 
-    @yield('content') 
+     @yield('content') 
 
         <!-- footer content -->
         @include('includesdash.footer')
        <!-- /footer content -->
 
-    </div>
-    </div>
         <!-- footerJS -->
         @include('includesdash.footerJS')
         <!-- footerJS -->

@@ -19,7 +19,8 @@ class CreateBeveragesTable extends Migration
             $table->boolean('published');
             $table->boolean('special');
             $table->string('beverage_image', 100);
-            $table->string('category_id', 100);
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

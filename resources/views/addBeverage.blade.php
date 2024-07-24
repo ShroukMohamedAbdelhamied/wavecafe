@@ -1,4 +1,4 @@
-@extends('layoutsdash.main')
+@extends('layouts.main')
 
 @section('content')
 
@@ -26,7 +26,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Add Beverage</h2>
+                        <h2>{{ $title }}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                             <li class="dropdown">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form action="{{ route('insertBeverage')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('beverages.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                             <!-- Beverage Title -->
                             <div class="item form-group">
@@ -61,7 +61,7 @@
                                     for="beverage_content">Content <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <textarea id="beverage_content" name="beverage_content" required="required"
-                                        class="form-control" value="{{ old('beverage_content') }}"></textarea>
+                                        class="form-control">{{ old('beverage_content') }}</textarea>
                                 </div>
                             </div>
 
@@ -82,7 +82,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="published" name="published"
-                                                class="form-control" value="{{ old('published') ? 'checked' : '' }}">
+                                                class="form-control" {{ old('published') ? 'checked' : '' }}>
                                             Published</label>
                                     </div>
                                 </div>
@@ -94,8 +94,7 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="special" name="special"
-                                                class="form-control" value="{{ old('special') ? 'checked' : '' }}">
-                                            Special</label>
+                                                class="form-control" {{ old('special') ? 'checked' : '' }}> Special</label>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +105,7 @@
                                     for="beverage_image">Image <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <input type="file" id="beverage_image" name="beverage_image" required="required"
-                                        class="form-control" value="{{ old('beverage_image') }}">
+                                        class="form-control">
                                 </div>
                             </div>
 
@@ -117,9 +116,10 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="">Select Category</option>
-                                        <option value="Iced Coffee" {{ old('category_id') == 'Iced Coffee' ? 'selected' : '' }}>Iced Coffee</option>
-                                        <option value="Hot Coffee" {{ old('category_id') == 'Hot Coffee' ? 'selected' : '' }}>Hot Coffee</option>
-                                        <option value="Fruit Juice" {{ old('category_id') == 'Fruit Juice' ? 'selected' : '' }}>Fruit Juice</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

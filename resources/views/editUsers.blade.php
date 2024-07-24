@@ -43,39 +43,60 @@
           </div>
           <div class="x_content">
             <br />
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+            <form action="{{ route('updateUsers', $user->id) }}" method="POST" enctype="multipart/form-data" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+            @csrf
+            @method('put')
               <!-- Full Name -->
               <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Full Name <span class="required">*</span></label>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="full_name">Full Name <span class="required">*</span></label>
+                <p style= "color: red">
+                @error('full_name')
+                  {{ $message }}
+                @enderror
+                </p>
                 <div class="col-md-6 col-sm-6">
-                  <input type="text" id="first-name" required="required" class="form-control">
+                  <input type="text" id="full_name" name="full_name" required="required" class="form-control" value="{{ $user->full_name }}">
                 </div>
               </div>
 
               <!-- Username -->
               <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="user-name">Username <span class="required">*</span></label>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="user_name">Username <span class="required">*</span></label>
+                <p style= "color: red">
+                @error('user_name')
+                  {{ $message }}
+                @enderror
+                </p>
                 <div class="col-md-6 col-sm-6">
-                  <input type="text" id="user-name" name="user-name" required="required" class="form-control">
+                  <input type="text" id="user_name" name="user_name" required="required" class="form-control" value="{{ $user->user_name }}">
                 </div>
               </div>
 
               <!-- Email -->
               <div class="item form-group">
                 <label for="email" class="col-form-label col-md-3 col-sm-3 label-align">Email <span class="required">*</span></label>
+                <p style= "color: red">
+                @error('email')
+                  {{ $message }}
+                @enderror
+                </p>
                 <div class="col-md-6 col-sm-6">
-                  <input id="email" class="form-control" type="email" name="email" required="required">
+                  <input id="email" class="form-control" type="email" name="email" required="required" value="{{ $user->email }}">
                 </div>
               </div>
 
               <!-- Active -->
               <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Active</label>
+                <p style= "color: red">
+                @error('active')
+                  {{ $message }}
+                @enderror
+                </p>
                 <div class="col-md-6 col-sm-6">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" class="flat">
+                      <input type="checkbox" class="flat" {{ old('active', $user->active) ? 'checked' : '' }}>
                     </label>
                   </div>
                 </div>
@@ -85,7 +106,7 @@
               <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="password">Password <span class="required">*</span></label>
                 <div class="col-md-6 col-sm-6">
-                  <input type="password" id="password" name="password" required="required" class="form-control">
+                  <input type="password" id="password" name="password" required="required" class="form-control" value="{{ $user->password }}">
                 </div>
               </div>
 
@@ -93,8 +114,8 @@
               <div class="ln_solid"></div>
               <div class="item form-group">
                 <div class="col-md-6 col-sm-6 offset-md-3">
-                  <button class="btn btn-primary" type="button">Cancel</button>
-                  <button type="submit" class="btn btn-success">Update</button>
+                  <button class="btn btn-primary" type="button" value="cancel">Cancel</button>
+                  <button type="submit" class="btn btn-success" value="submit">Update</button>
                 </div>
               </div>
 

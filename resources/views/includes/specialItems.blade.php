@@ -42,7 +42,21 @@
                   <h2 class="tm-text-primary tm-special-item-title">Seventh Item</h2>
                   <p class="tm-special-item-text">Curabitur eget erat sit amet sapien aliquet vulputate quis sed arcu.</p>  
                 </div>
-              </div>                      
-            </div>            
-          </div>
-          <!-- end Special Items Page -->
+              </div>
+              <div class="tm-special-items">
+               @if($specials->isEmpty())
+              <p>No special items available.</p>
+               @else
+               @foreach($specials as $special)
+                <div class="tm-black-bg tm-special-item">
+                    <img src="{{ asset('assets/images/' . $special->special_image) }}" alt="{{ $special->special_title }}">
+                    <div class="tm-special-item-description">
+                        <h2 class="tm-text-primary tm-special-item-title">{{ $special->special_title }}</h2>
+                        <p class="tm-special-item-text">{{ $special->special_content }}</p>
+                    </div>
+                </div>
+            @endforeach
+        @endif                      
+     </div>            
+    </div>
+  <!-- end Special Items Page -->

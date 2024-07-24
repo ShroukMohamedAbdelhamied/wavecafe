@@ -20,7 +20,7 @@
                 </a>
               </li>
               <li class="tm-page-nav-item">
-              <a class="tm-page-link {{request()->is('special') ? 'active' : ''}}" href="{{route('special')}}">
+              <a class="tm-page-link {{request()->is('specials') ? 'active' : ''}}" href="{{route('specials')}}">
               <i class="fas fa-glass-martini tm-page-link-icon"></i>
                   <span>Special Items</span>
                 </a>

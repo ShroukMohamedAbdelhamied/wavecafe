@@ -10,7 +10,7 @@ Route::get('/aboutus', [Frontpages::class, 'aboutus'])->name('aboutus');
 Route::get('/contactus', [Frontpages::class, 'contactus'])->name('contactus');
 
 // Drink Menu
-Route::get('/icedDrinks', [Frontpages::class, 'icedDrinks'])->name('icedDrinks'); // Ensure this route is defined correctly
+Route::get('/icedDrinks', [Frontpages::class, 'icedDrinks'])->name('icedDrinks');
 Route::get('/hotDrinks', [Frontpages::class, 'hotDrinks'])->name('hotDrinks');
 Route::get('/fruitJuice', [Frontpages::class, 'fruitJuices'])->name('fruitJuice');
 
